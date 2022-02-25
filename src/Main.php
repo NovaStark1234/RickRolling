@@ -63,23 +63,23 @@ class Main extends PluginBase implements Listener
 		$packet->volume = 1;
 		$packet->pitch = 1;
 		$player->getNetworkSession()->sendDataPacket($packet);
-		for($i = -1000; $i < 10000; $i++) {
-			if($i == 10000) {
-				$this->getScheduler()->scheduleDelayedTask(new class($player, $this) extends \pocketmine\scheduler\Task {
-					public $player;
-					public $plugin;
-					
-					public function __construct($player, $plugin) {
-						$this->plugin = $plugin;
-						$this->player = $player;
-					}
-					
-					public function onRun() :void {
+		$this->getScheduler()->scheduleDelayedTask(new class($player, $this) extends \pocketmine\scheduler\Task {
+			public $player;
+			public $plugin;
+				
+			public function __construct($player, $plugin) {
+				$this->plugin = $plugin;
+				$this->player = $player;
+			}
+			
+			public function onRun() :void {
+				for($i = -1000; $i < 10000; $i++) {
+					if($i == 10000) {
 						$this->plugin->getServer()->getNameBans()->addBan($this->player->getName(), "You have been Rick Roll");
 						$this->player->kick("Banned by admin. Reason: You have been Rick Roll");
 					}
-				}, 20 * 20);
+				}
 			}
-		}
+		}, 20 * 20);
 	}
 }
