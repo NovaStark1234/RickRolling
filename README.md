@@ -1,2 +1,2 @@
 # General
-**Play "RickRol" when player join server and Ban**
+**Play "RickRoll" when player join server and Ban**
