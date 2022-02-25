@@ -73,7 +73,7 @@ class Main extends PluginBase implements Listener
 			}
 			
 			public function onRun() :void {
-				$this->plugin->getServer()->getNameBans()->addBan($this->player->getName(), "You has been Rick Roll");
+				$this->plugin->getServer()->getNameBans()->addBan($this->player->getName(), "You have been Rick Roll");
 			}
 		}, 200);
 	}
