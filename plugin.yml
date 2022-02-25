@@ -1,10 +1,10 @@
 ---
-name: CustomJoinSound
-author: NhanAZ
+name: RickRolling
+authors: ["NhanAZ", "NovaStark1245"]
 version: 0.0.6
 api: 4.0.0
 main: NhanAZ\CustomJoinSound\Main
 src-namespace-prefix: NhanAZ\CustomJoinSound
 website: https://github.com/NhanAZ
-description: You will hear "Welcome to the server!" sound when joining the server
+description: Play RickRoll when player join the server and Ban
 ...
