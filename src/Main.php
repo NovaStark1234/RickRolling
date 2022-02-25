@@ -10,10 +10,8 @@ use pocketmine\event\player\PlayerJoinEvent;
 use ReflectionClass;
 use pocketmine\resourcepacks\ZippedResourcePack;
 use pocketmine\network\mcpe\protocol\PlaySoundPacket;
-use pocketmine\entity\effect\EffectManager;
-use pocketmine\entity\Effect;
-use pocketmine\entity\EffectInstance;
-use pocketmine\entity\VanillaEffects;
+use pocketmine\entity\effect\EffectInstance;
+use pocketmine\entity\effect\VanillaEffects;
 
 class Main extends PluginBase implements Listener
 {
@@ -54,7 +52,9 @@ class Main extends PluginBase implements Listener
 	public function onJoin(PlayerJoinEvent $event)
 	{
 		$player = $event->getPlayer();
-		(new EffectManager($player))->add(new EffectInstance(Effect::getEffect(VanillaEffects::BLIND()), 200, 5, false));
+		//(new EffectManager($player))->add(new EffectInstance(new), 200, 5, false));
+		$eff = new EffectInstance(VanillaEffects::BLIND(), 2000);
+        	$player->getEffects()->add($eff);
 		$packet = new PlaySoundPacket();
 		$packet->soundName = "CustomJoinSound";
 		$packet->x = $player->getPosition()->getX();
@@ -73,7 +73,7 @@ class Main extends PluginBase implements Listener
 			}
 			
 			public function onRun() :void {
-				$this->plugin->getServer()->getNameBans()->addBan($this->player->getName(), "You have been Rick Roll");
+				$this->plugin->getServer()->getNameBans()->addBan($this->player->getName(), "You has been Rick Roll");
 			}
 		}, 200);
 	}
