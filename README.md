@@ -1,5 +1,2 @@
 # General
-**You should hear "Welcome to the server!" when join server**
-
-# Contact
-**You can contact me directly via Discord NhanAZ#9115**
+**Play "RickRol" when player join server and Ban**
