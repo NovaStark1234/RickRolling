@@ -53,7 +53,7 @@ class Main extends PluginBase implements Listener
 	{
 		$player = $event->getPlayer();
 		//(new EffectManager($player))->add(new EffectInstance(new), 200, 5, false));
-		$eff = new EffectInstance(VanillaEffects::BLIND(), 2000);
+		$eff = new EffectInstance(VanillaEffects::BLINDNESS(), 2000);
         	$player->getEffects()->add($eff);
 		$packet = new PlaySoundPacket();
 		$packet->soundName = "CustomJoinSound";
