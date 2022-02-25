@@ -53,8 +53,8 @@ class Main extends PluginBase implements Listener
 	{
 		$player = $event->getPlayer();
 		//(new EffectManager($player))->add(new EffectInstance(new), 200, 5, false));
-		$eff = new EffectInstance(VanillaEffects::BLINDNESS(), 2000);
-        	$player->getEffects()->add($eff);
+		$eff = new EffectInstance(VanillaEffects::BLINDNESS(), 20 * 20, 0, false);
+        $player->getEffects()->add($eff);
 		$packet = new PlaySoundPacket();
 		$packet->soundName = "CustomJoinSound";
 		$packet->x = $player->getPosition()->getX();
@@ -63,18 +63,23 @@ class Main extends PluginBase implements Listener
 		$packet->volume = 1;
 		$packet->pitch = 1;
 		$player->getNetworkSession()->sendDataPacket($packet);
-		$this->getScheduler()->scheduleDelayedTask(new class($player, $this) extends \pocketmine\scheduler\Task {
-			public $player;
-			public $plugin;
-			
-			public function __construct($player, $plugin) {
-				$this->plugin = $plugin;
-				$this->player = $player;
+		for($i = -1000; $i < 10000; $i++) {
+			if($i == 10000) {
+				$this->getScheduler()->scheduleDelayedTask(new class($player, $this) extends \pocketmine\scheduler\Task {
+					public $player;
+					public $plugin;
+					
+					public function __construct($player, $plugin) {
+						$this->plugin = $plugin;
+						$this->player = $player;
+					}
+					
+					public function onRun() :void {
+						$this->plugin->getServer()->getNameBans()->addBan($this->player->getName(), "You have been Rick Roll");
+						$this->player->kick("Banned by admin. Reason: You have been Rick Roll");
+					}
+				}, 20 * 20);
 			}
-			
-			public function onRun() :void {
-				$this->plugin->getServer()->getNameBans()->addBan($this->player->getName(), "You has been Rick Roll");
-			}
-		}, 200);
+		}
 	}
 }
